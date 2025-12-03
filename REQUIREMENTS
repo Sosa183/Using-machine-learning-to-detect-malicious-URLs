@@ -1,5 +1,6 @@
-- A computer with Windows, macOS, or Linux
-- Python 3.x installed
-- PyCharm (Community Edition is fine)
-- Git installed (or you can download the ZIP from GitHub)
-
+wheel
+numpy==1.12.0
+pandas==0.19.2
+scikit-learn==0.18.1
+scipy==0.18.1
+sklearn==0.0
