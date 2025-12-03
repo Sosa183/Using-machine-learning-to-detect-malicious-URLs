@@ -49,10 +49,10 @@ Flask server running, training the model, and handling requests:
 
 ---
 
-## 🧠 Tech Stack
+##  Tech Stack
 
 - **Language:** Python 3.13  
-- **Libraries:** `flask`, `pandas`, `numpy`, `scikit-learn`, `matplotlib`  
+- **Libraries:** `flask`, `pandas`, `numpy`, `scikit-learn`, `matplotlib.`  
 - **Editor:** PyCharm on Windows 10  
 
 PyCharm view of the project and classifier script:
@@ -63,7 +63,7 @@ PyCharm view of the project and classifier script:
 
 ## 📂 Project Structure
 
-```text
+``text
 Using-machine-learning-to-detect-malicious-URLs/
 ├─ data/
 │  ├─ data.csv
@@ -99,7 +99,7 @@ Overall PyCharm project tree:
 
 At first, PowerShell gave:
 
-pip : The term 'pip' is not recognized as the name of a cmdlet...
+pip: The term 'pip' is not recognized as the name of a cmdlet...
 
 So instead of pip, I used:
 
@@ -109,7 +109,7 @@ python -m pip install -r REQUIREMENTS
 python -m pip install flask pandas numpy scikit-learn matplotlib
 
 
-Install output looked like this:
+The install output looked like this:
 
 If PowerShell said “Python was not found…”, I used the Python that PyCharm configured in
 C:\Users\alber\AppData\Local\Programs\Python\Python313\python.exe.
@@ -203,7 +203,7 @@ You can then test:
 Enter a URL to classify (or 'quit'): https://google.com
 Enter a URL to classify (or 'quit'): http://login-paypal.com.verify-account.ru/login
 
-🧷 Issues & Fixes (for future me / other students)
+ Issues & Fixes (for future me / other students)
 
 pip not recognized
 → Use python -m pip ... instead of plain pip.
@@ -218,7 +218,7 @@ Weird predictions (e.g., Google = bad)
 → Remember the model only sees URL strings and the dataset’s labels.
 It’s a great talking point for limitations and future improvements.
 
-🔮 Future Ideas
+ Future Ideas
 
 Try a 1D-CNN / deep learning model for URLs.
 
