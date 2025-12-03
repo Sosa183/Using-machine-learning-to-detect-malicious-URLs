@@ -1,89 +1,233 @@
-# Can My Laptop Catch Phishing Links? Building a Machine Learning URL Detector in PyCharm
+1. Put your screenshots in an images folder
 
-> **Draft:** MEDIUM-ARTICLE-DRAFT-V1.md  
-> **Project:** AI-Powered Phishing URL Detection (URL-based)  
-> **Student:** Albert Sosa  
+In your project folder (Using-machine-learning-to-detect-malicious-URLs), create:
 
----
+images/
+    flask_console.png          # from screenshot of terminal with Flask + accuracy
+    steamunlocked_good.png     # browser showing steamunlocked.org = good
+    google_bad.png             # browser showing google.com = bad
+    predict_route.png          # browser showing /predict = good
+    pycharm_classifier.png     # PyCharm with my_url_classifier.py + data.csv
+    pip_install.png            # terminal showing python -m pip install ...
+    windows_folder.png         # Windows Explorer view of project files
+    pycharm_project_tree.png   # PyCharm project tree + README
 
-## 1. Introduction / Abstract (Hook)
 
-The first time I saw a phishing link that looked almost identical to the real site, I wondered a scary question:
+You can rename your actual PNGs to these names, or keep your names and just change the filenames in the README below.
 
-> *If I can’t tell the difference, how is a regular user supposed to stay safe?*
+2. Copy-paste this into README.md
+# AI-Powered Phishing URL Detector
 
-Modern phishing attacks hide behind look-alike domains, random subdomains, and URL tricks that are easy to miss when you’re half-awake checking email. I wanted to know whether a simple machine-learning model running on **my own laptop** could help spot these suspicious links automatically.
+This repository is my hands-on project where I turned an open-source URL dataset
+into a working **AI-powered phishing detector** using Python, scikit-learn, Flask,
+and PyCharm on Windows.
 
-In this article, I walk through how I turned an open-source project into my own **AI-powered phishing URL detector** using Python, scikit-learn, and PyCharm on Windows. I’ll show how I:
+I used the repo:
 
-- Set up the environment and fixed very real Windows issues (like `pip` not being recognized).
-- Trained a Logistic Regression model on a dataset of labeled URLs.
-- Built a tiny **Flask web app** that classifies URLs directly from the browser.
-- Tested real-world-style URLs like `steamunlocked.org` and `google.com` and looked at how the model behaves.
-- Connected my results to current phishing research and industry statistics.
+> https://github.com/faizann24/Using-machine-learning-to-detect-malicious-URLs  
 
-By the end, you’ll see exactly how to reproduce this project yourself, what went wrong for me, and why URL-only models are powerful but also limited in defending against modern phishing.
+and then:
 
-[Screenshot: Hero image or banner of terminal + browser showing URL classification]
-
----
-
-## 2. Purpose and Background
-
-I chose this project for two reasons: curiosity and practicality.
-
-First, phishing is **everywhere**. Most people think of phishing emails, but underneath almost every phishing campaign is at least one malicious URL. If a model can learn what “bad” URLs look like, it could be plugged into email gateways, proxies, or even browser extensions as one more layer of defense.
-
-Second, I’m a cybersecurity student, and I wanted a project that:
-
-- Uses **real code**, not just a box-and-arrow diagram.
-- Gives me something to show on **GitHub** and later in job interviews.
-- Fits nicely into my course’s Medium article assignment.
-
-### What this tool is
-
-At its core, my project is a **URL-based classifier**:
-
-- Input: a string that looks like a URL (e.g., `https://login-paypal.com.verify-account.ru/login`)
-- Output: a label such as `good` or `bad`, based on patterns learned from a dataset.
-
-Under the hood, the model:
-
-- Tokenizes URLs into chunks (characters or small n-grams).
-- Converts them into numeric vectors using **TF-IDF**.
-- Learns a decision boundary using **Logistic Regression**.
-
-I started from Faizan Ahmad’s open-source repo, **“Using machine learning to detect malicious URLs”**, which already had a dataset and a basic training script. My contribution was to:
-
-- Make it work reliably on **Windows / PyCharm**.
-- Clean up and modernize the training and Flask code.
-- Wrap it in better documentation and a Medium-style narrative.
-
-### Who uses tools like this?
-
-In the real world, similar techniques are used by:
-
-- **Email security platforms** to pre-score URLs in messages.
-- **Secure web gateways** to block suspicious destinations.
-- **Browser extensions** and endpoint agents that warn users about risky links.
-
-My project is obviously not production-grade, but it’s a miniature version of the ideas those systems use.
-
-Emotionally, I was a mix of **excited** and **intimidated**. I expected “just pip install and run,” but my actual experience was wrestling with Python versions, missing libraries, and debugging Windows-specific problems. Ironically, fixing those problems taught me as much as the machine learning did.
+- Fixed Windows / Python / pip issues
+- Trained the model locally
+- Built a Flask app that lets me test URLs from the browser
+- Documented every step with screenshots (see below)
 
 ---
 
-## 3. Installation and Setup Tutorial (PyCharm on Windows)
+## 🔍 What the Project Does
 
-In this section I’ll show exactly how I got the project running, step by step, including the issues I hit and how I fixed them. You can follow this as a mini-tutorial.
+- Loads labeled URLs from `data/data.csv`  
+- Vectorizes the URLs using **TF-IDF**  
+- Trains a **Logistic Regression** classifier (`good` vs `bad`)  
+- Exposes a **Flask web app** where any path gets classified  
+- Shows a simple **entropy** score for the URL string  
 
-> All commands below are from **PowerShell** or the **PyCharm terminal** on Windows.
+Flask server running, training the model, and handling requests:
 
-### 3.1 Clone the project
+![Flask console](images/flask_console.png)
 
-I started by cloning the original repo into my Downloads folder:
+---
 
-```bash
+## 🧠 Tech Stack
+
+- **Language:** Python 3.13  
+- **Libraries:** `flask`, `pandas`, `numpy`, `scikit-learn`, `matplotlib`  
+- **Editor:** PyCharm on Windows 10  
+
+PyCharm view of the project and classifier script:
+
+![PyCharm with classifier + data](images/pycharm_classifier.png)
+
+---
+
+## 📂 Project Structure
+
+```text
+Using-machine-learning-to-detect-malicious-URLs/
+├─ data/
+│  ├─ data.csv
+│  └─ ...
+├─ AIserver.py
+├─ my_url_classifier.py
+├─ README.md
+├─ REQUIREMENTS
+└─ images/
+   ├─ flask_console.png
+   ├─ steamunlocked_good.png
+   ├─ google_bad.png
+   ├─ predict_route.png
+   ├─ pycharm_classifier.png
+   ├─ pip_install.png
+   ├─ windows_folder.png
+   └─ pycharm_project_tree.png
+
+
+Windows Explorer view of the main files:
+
+⚙️ Setup & Installation (What I Actually Did)
+1️⃣ Clone and open in PyCharm
 git clone https://github.com/faizann24/Using-machine-learning-to-detect-malicious-URLs.git
 cd Using-machine-learning-to-detect-malicious-URLs
 
+
+Open PyCharm → File → Open… and select this folder.
+
+Overall PyCharm project tree:
+
+2️⃣ Fixing pip / Python and installing requirements
+
+At first, PowerShell gave:
+
+pip : The term 'pip' is not recognized as the name of a cmdlet...
+
+So instead of pip, I used:
+
+python -m pip install --upgrade pip
+python -m pip install -r REQUIREMENTS
+# plus anything missing:
+python -m pip install flask pandas numpy scikit-learn matplotlib
+
+
+Install output looked like this:
+
+If PowerShell said “Python was not found…”, I used the Python that PyCharm configured in
+C:\Users\alber\AppData\Local\Programs\Python\Python313\python.exe.
+
+🚀 Running the Model
+Option A: Flask web demo (AIserver.py)
+
+In PyCharm’s terminal:
+
+python AIserver.py
+
+
+What happens:
+
+The script trains the Logistic Regression model on data/data.csv.
+
+It prints test accuracy (around 0.98 in my run).
+
+It starts a Flask server on http://127.0.0.1:5000.
+
+You should see something like:
+
+Testing URLs in the Browser
+1. steamunlocked.org – predicted good
+
+Visit:
+
+http://127.0.0.1:5000/https://steamunlocked.org/
+
+
+Result page:
+
+You asked for: https://steamunlocked.org/
+
+AI output (label): good
+Entropy: 4.103909910282364
+
+
+2. google.com (typed with double https) – predicted bad
+
+I accidentally entered a weird URL:
+
+http://127.0.0.1:5000/https://https://www.google.com/
+
+
+The model said:
+
+You asked for: https://https://www.google.com/
+
+AI output (label): bad
+Entropy: 3.6277635530073997
+
+
+This is a nice example of how URL-only models can misclassify odd but
+benign strings. Great thing to talk about under “limitations”.
+
+3. Simple path /predict – predicted good
+
+Visiting:
+
+http://127.0.0.1:5000/predict
+
+
+gave:
+
+You asked for: predict
+
+AI output (label): good
+Entropy: 2.8073549220576046
+
+
+🧪 CLI Classifier (my_url_classifier.py)
+
+I also created my_url_classifier.py which:
+
+Loads data.csv
+
+Trains TF-IDF + Logistic Regression
+
+Prints accuracy and a classification report
+
+Lets you type URLs and get a prediction
+
+Run it with:
+
+python my_url_classifier.py
+
+
+You can then test:
+
+Enter a URL to classify (or 'quit'): https://google.com
+Enter a URL to classify (or 'quit'): http://login-paypal.com.verify-account.ru/login
+
+🧷 Issues & Fixes (for future me / other students)
+
+pip not recognized
+→ Use python -m pip ... instead of plain pip.
+
+Python launches Microsoft Store
+→ Install Python from python.org and use PyCharm’s configured interpreter.
+
+ModuleNotFoundError for flask, sklearn, etc.
+→ Install them manually with python -m pip install flask scikit-learn pandas numpy.
+
+Weird predictions (e.g., Google = bad)
+→ Remember the model only sees URL strings and the dataset’s labels.
+It’s a great talking point for limitations and future improvements.
+
+🔮 Future Ideas
+
+Try a 1D-CNN / deep learning model for URLs.
+
+Use a fresher phishing dataset (e.g., from APWG feeds).
+
+Expose a JSON /api/predict endpoint.
+
+Combine URL signals with email metadata or page content as part of a
+bigger AI-Powered Phishing Detection System.
+
+This repo is mainly a learning project and a portfolio piece for my cybersecurity coursework, not a production security product.
+All screenshots in this README are from my actual setup on Windows using PyCharm.
