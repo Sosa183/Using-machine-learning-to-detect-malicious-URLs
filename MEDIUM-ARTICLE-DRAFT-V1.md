@@ -63,7 +63,7 @@ PyCharm view of the project and classifier script:
 
 ## 📂 Project Structure
 
-``text
+```text
 Using-machine-learning-to-detect-malicious-URLs/
 ├─ data/
 │  ├─ data.csv
