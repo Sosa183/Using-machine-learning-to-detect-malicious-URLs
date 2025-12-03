@@ -85,8 +85,8 @@ Using-machine-learning-to-detect-malicious-URLs/
 
 Windows Explorer view of the main files:
 
-⚙️ Setup & Installation (What I Actually Did)
-1️⃣ Clone and open in PyCharm
+ Setup & Installation (What I Actually Did)
+ Clone and open in PyCharm
 git clone https://github.com/faizann24/Using-machine-learning-to-detect-malicious-URLs.git
 cd Using-machine-learning-to-detect-malicious-URLs
 
@@ -95,7 +95,7 @@ Open PyCharm → File → Open… and select this folder.
 
 Overall PyCharm project tree:
 
-2️⃣ Fixing pip / Python and installing requirements
+ Fixing pip / Python and installing requirements
 
 At first, PowerShell gave:
 
@@ -114,7 +114,7 @@ Install output looked like this:
 If PowerShell said “Python was not found…”, I used the Python that PyCharm configured in
 C:\Users\alber\AppData\Local\Programs\Python\Python313\python.exe.
 
-🚀 Running the Model
+ Running the Model
 Option A: Flask web demo (AIserver.py)
 
 In PyCharm’s terminal:
@@ -181,7 +181,7 @@ AI output (label): good
 Entropy: 2.8073549220576046
 
 
-🧪 CLI Classifier (my_url_classifier.py)
+ CLI Classifier (my_url_classifier.py)
 
 I also created my_url_classifier.py which:
 
